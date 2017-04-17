@@ -34,38 +34,43 @@ function init() {
         }
       },
        edges: {
-      smooth: {
-        type: "discrete",
-        forceDirection: "none"
-      }
-    },
+        smooth: {
+          type: "discrete",
+          forceDirection: "none"
+        }
+      },
       layout: {
-      randomSeed: 1,
-      improvedLayout:true,
-      hierarchical: {
-        enabled:false,
-        levelSeparation: 150,
-        nodeSpacing: 100,
-        treeSpacing: 200,
-        blockShifting: true,
-        edgeMinimization: true,
-        parentCentralization: true,
-        direction: 'UD',        // UD, DU, LR, RL
-        sortMethod: 'hubsize'   // hubsize, directed
-            }
-          }
+        randomSeed: 1,
+        improvedLayout:true,
+        hierarchical: {
+          enabled:false,
+          levelSeparation: 150,
+          nodeSpacing: 100,
+          treeSpacing: 200,
+          blockShifting: true,
+          edgeMinimization: true,
+          parentCentralization: true,
+          direction: 'UD',        // UD, DU, LR, RL
+          sortMethod: 'hubsize'   // hubsize, directed
+              }
+      },
+      manipulation: {
+        enabled: true
+      }  
     }
 
-      // initialize your network!
+      
       network = new vis.Network(container, data, options);
-      network.on("click", function (params) {
-            alert('event test');
-        });
+      //Events
+      // network.on("click", function (params) {
+      //       alert('event test');
+      //   });
 
-
+      width = document.getElementById('mynetwork').offsetWidth;
+      height = document.getElementById('mynetwork').offsetHeight;
       network.moveTo({
         position: {x: 0, y: 0},
-        offset: {x: -width/2, y: -height/2},
+        offset: {x: (-width/2) , y: (-height/2)},
         scale: 1,
     })
 
