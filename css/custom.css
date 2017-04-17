@@ -1,0 +1,19 @@
+.sidebar {
+    float: right;
+    width: 33%;
+}
+
+ #mynetwork {
+    width: 67%;
+    height: 400px;
+    border: 1px solid lightgray;
+    float: left;
+}
+
+.inputgroup {
+	width: 50%;
+	display: block;
+	border-radius: 10px;
+	border: solid lightgray;
+	padding: 30px;
+}
