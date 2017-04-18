@@ -54,9 +54,36 @@ function init() {
           sortMethod: 'hubsize'   // hubsize, directed
               }
       },
-      manipulation: {
-        enabled: true
-      }  
+        manipulation: {
+            enabled: true,
+            addNode: function (data, callback) {
+                // filling in the popup DOM elements
+                document.getElementById('nodeOper').innerHTML = "Add Node";
+                editNode(data, callback);
+            },
+            editNode: function (data, callback) {
+                // filling in the popup DOM elements
+                document.getElementById('nodeOper').innerHTML = "Edit Node";
+                editNode(data, callback);
+            },
+            addEdge: function (data, callback) {
+                if (data.from == data.to) {
+                  var r = confirm("Do you want to connect the node to itself?");
+                  if (r != true) {
+                    callback(null);
+                    return;
+                  }
+                }
+                document.getElementById('edgeOperation').innerHTML = "Add Edge";
+                editEdgeWithoutDrag(data, callback);
+            },
+            editEdge: {
+                editWithoutDrag: function(data, callback) {
+                  document.getElementById('edgeOperation').innerHTML = "Edit Edge";
+                  editEdgeWithoutDrag(data,callback);
+                }
+            }
+        }  
     }
 
       
