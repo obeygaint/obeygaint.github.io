@@ -2,21 +2,26 @@ var network;
 var nodes;
 var edges;
 function init() {
-  nodes = new vis.DataSet([
-          {id: 1, label: 'Node 1', physics: false, x:-214,y:-26},
-          {id: 2, label: 'Node 2', physics: false},
-          {id: 3, label: 'Node 3', physics: false},
-          {id: 4, label: 'Node 4', physics: false},
-          {id: 5, label: 'Node 5', physics: false}
-      ]);
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  nodes = new vis.DataSet(
+    // [
+    //       {id: 1, label: 'Node 1', physics: false, x:-214,y:-26},
+    //       {id: 2, label: 'Node 2', physics: false},
+    //       {id: 3, label: 'Node 3', physics: false},
+    //       {id: 4, label: 'Node 4', physics: false},
+    //       {id: 5, label: 'Node 5', physics: false}
+    //   ]
+      );
 
       // create an array with edges
-      edges = new vis.DataSet([
-          {from: 1, to: 3 , label: 'test', physics: false,  type:'arrow'},
-          {from: 1, to: 2, physics: false},
-          {from: 2, to: 4, physics: false},
-          {from: 2, to: 5, physics: false}
-      ]);
+      edges = new vis.DataSet(
+      //   [
+      //     {from: 1, to: 3 , label: 'test', physics: false,  type:'arrow'},
+      //     {from: 1, to: 2, physics: false},
+      //     {from: 2, to: 4, physics: false},
+      //     {from: 2, to: 5, physics: false}
+      // ]
+      );
 
       // create a network
       var container = document.getElementById('mynetwork');
@@ -34,10 +39,19 @@ function init() {
         }
       },
        edges: {
-        smooth: {
-          type: "discrete",
-          forceDirection: "none"
+        arrows: {
+            to: {enabled: true, scaleFactor:1, type:'arrow'}
         }
+        // smooth: {
+        //   type: "curvedCW",
+        // }
+      },
+      interaction:{
+        hover: true
+      },
+      configure: { // FOR DEBUG ONLY
+        enabled: true,
+        showButton: true
       },
       layout: {
         randomSeed: 1,
@@ -50,9 +64,21 @@ function init() {
           blockShifting: true,
           edgeMinimization: true,
           parentCentralization: true,
-          direction: 'UD',        // UD, DU, LR, RL
-          sortMethod: 'hubsize'   // hubsize, directed
-              }
+          direction: 'LR',        // UD, DU, LR, RL
+          sortMethod: 'directed'   // hubsize, directed
+          }
+      },
+      physics :{
+        enabled:true,
+        maxVelocity: 1,
+        solver: 'forceAtlas2Based',
+        minVelocity: 0.1,
+        stabilization: {
+          enabled: true,
+          iterations: 10,
+          updateInterval: 1,
+        }
+
       },
         manipulation: {
             enabled: true,
@@ -89,9 +115,13 @@ function init() {
       
       network = new vis.Network(container, data, options);
       //Events
-      // network.on("click", function (params) {
-      //       alert('event test');
-      //   });
+      network.on("stabilized", function (param) {
+            network.fit();
+      });
+
+      network.on("startStabilizing", function (param) {
+            network.fit();
+      });
 
       width = document.getElementById('mynetwork').offsetWidth;
       height = document.getElementById('mynetwork').offsetHeight;
@@ -102,16 +132,5 @@ function init() {
     })
 
 //Events
-}
-
-function addNode() {
-    try {
-        nodes.add({
-            id: undefined,
-            label: document.getElementById('nodeName').value
-            });
-        } catch (err) {
-             alert(err);
-        }
 }
 

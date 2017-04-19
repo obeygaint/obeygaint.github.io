@@ -5,24 +5,25 @@ function editNode(data, callback) {
       document.getElementById('nodePopUp').style.display = 'block';
     }
 
-    function clearNodePopUp() {
+function clearNodePopUp() {
       document.getElementById('nodeSaveButton').onclick = null;
       document.getElementById('nodeCancelButton').onclick = null;
       document.getElementById('nodePopUp').style.display = 'none';
     }
 
-    function cancelNodeEdit(callback) {
+function cancelNodeEdit(callback) {
       clearNodePopUp();
       callback(null);
     }
 
-    function saveNodeData(data, callback) {
+function saveNodeData(data, callback) {
       data.label = document.getElementById('nodeLabel').value;
+      data.someData = document.getElementById('nodeInfo').value;
       clearNodePopUp();
       callback(data);
     }
 
-    function editEdgeWithoutDrag(data, callback) {
+function editEdgeWithoutDrag(data, callback) {
       // filling in the popup DOM elements
       document.getElementById('edgeLabel').value = data.label;
       document.getElementById('edgeSaveButton').onclick = saveEdgeData.bind(this, data, callback);
@@ -30,18 +31,18 @@ function editNode(data, callback) {
       document.getElementById('edgePopUp').style.display = 'block';
     }
 
-    function clearEdgePopUp() {
+function clearEdgePopUp() {
       document.getElementById('edgeSaveButton').onclick = null;
       // document.getElementById('edgeCancelButton').onclick = null;
       document.getElementById('edgePopUp').style.display = 'none';
     }
 
-    function cancelEdgeEdit(callback) {
+function cancelEdgeEdit(callback) {
       clearEdgePopUp();
       callback(null);
     }
 
-    function saveEdgeData(data, callback) {
+function saveEdgeData(data, callback) {
       if (typeof data.to === 'object')
         data.to = data.to.id
       if (typeof data.from === 'object')
@@ -50,3 +51,4 @@ function editNode(data, callback) {
       clearEdgePopUp();
       callback(data);
     }
+

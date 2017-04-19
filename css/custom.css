@@ -1,10 +1,10 @@
 .sidebar {
     float: right;
-    width: 33%;
+    width: 7%;
 }
 
  #mynetwork {
-    width: 67%;
+    width: 90%;
     height: 400px;
     border: 1px solid lightgray;
     float: left;

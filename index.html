@@ -5,44 +5,46 @@
     <script type="text/javascript" src="js/operations.js"></script>
     <link href="css/vis.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <script type="text/javascript" src="js/exportImport.js"></script>
 
-    <style type="text/css">
-        #mynetwork {
-            width: 60%;
-            height: 400px;
-            border: 1px solid lightgray;
-            float: left;
-        }
-    </style>
 </head>
 <body onload="init()">
-<div id="mynetwork"></div>
+	<div id="mynetwork"></div>
+	<div class="sidebar">
+		<button onclick="saveNodeToFile(nodes)">Save nodes to file</button>
+		<input type="file" id="files" name="files[]"/>
+		<output id="list"></output>
+		<input type="button" value="Stabilize" onclick="network.fit()" name="">
+	</div>
+	<!-- Pop-up windows -->
+	<!-- Node edit popUp -->
+	<div id="nodePopUp">
+	  <span id="nodeOper">node</span> <br>
+	  <table style="margin:auto;">
+	    <tr>
+	      <td>id</td><td><input id="nodeId" value="new value" /></td>
+	    </tr>
+	    <tr>
+	      <td>label</td><td><input id="nodeLabel" value="new value" /></td>
+	    </tr>
+	    <tr>
+	    	<td>Some info</td><td><input id="nodeInfo" value="new value"/></td>
+	    </tr>
+	  </table>
+	  <input type="button" value="save" id="nodeSaveButton" />
+	  <input type="button" value="cancel" id="nodeCancelButton" />
+	</div>
 
-
-<!-- Pop-up windows -->
-<div id="nodePopUp">
-  <span id="nodeOper">node</span> <br>
-  <table style="margin:auto;">
-    <tr>
-      <td>id</td><td><input id="nodeId" value="new value" /></td>
-    </tr>
-    <tr>
-      <td>label</td><td><input id="nodeLabel" value="new value" /></td>
-    </tr>
-  </table>
-  <input type="button" value="save" id="nodeSaveButton" />
-  <input type="button" value="cancel" id="nodeCancelButton" />
-</div>
-
-<div id="edgePopUp">
-  <span id="edgeOperation">edge</span> <br>
-  <table style="margin:auto;">
-    <tr>
-      <td>label</td><td><input id="edgeLabel" value="new value" /></td>
-    </tr></table>
-  <input type="button" value="save" id="edgeSaveButton" />
-<!--   <input type="button" value="cancel" id="edgeCancelButton" />
- --></div>
+	<!-- Edge edit popup -->
+	<div id="edgePopUp">
+	  <span id="edgeOperation">edge</span> <br>
+	  <table style="margin:auto;">
+	    <tr>
+	      <td>label</td><td><input id="edgeLabel" value="new value" /></td>
+	    </tr></table>
+	  <input type="button" value="save" id="edgeSaveButton" />
+	<!--   <input type="button" value="cancel" id="edgeCancelButton" />
+	 --></div>
 
 </body>
 </html>
