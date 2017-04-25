@@ -41,7 +41,8 @@ function init() {
         // }
       },
       interaction:{
-        hover: true
+        hover: true,
+        multiselect: true
       },
       // configure: { // FOR DEBUG ONLY
       //   enabled: true,
@@ -109,13 +110,7 @@ function init() {
 
       network = new vis.Network(container, data, options);
       //Events
-      network.on("stabilized", function (param) {
-            network.fit();
-      });
-
-      network.on("startStabilizing", function (param) {
-            network.fit();
-      });
+      initializeEvents();
 
       width = document.getElementById('mynetwork').offsetWidth;
       height = document.getElementById('mynetwork').offsetHeight;
