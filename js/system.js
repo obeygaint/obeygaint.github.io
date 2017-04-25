@@ -1,17 +1,11 @@
 var network;
 var nodes;
 var edges;
+//
 function init() {
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
-  nodes = new vis.DataSet(
-    // [
-    //       {id: 1, label: 'Node 1', physics: false, x:-214,y:-26},
-    //       {id: 2, label: 'Node 2', physics: false},
-    //       {id: 3, label: 'Node 3', physics: false},
-    //       {id: 4, label: 'Node 4', physics: false},
-    //       {id: 5, label: 'Node 5', physics: false}
-    //   ]
-      );
+  nodeTitle = "<div><p>№ ГК <span>123</span></p><p>№ ГК <span>123</span></p><p>№ ГК <span>123</span></p></div>"
+  nodes = new vis.DataSet();
 
       // create an array with edges
       edges = new vis.DataSet(
@@ -49,10 +43,10 @@ function init() {
       interaction:{
         hover: true
       },
-      configure: { // FOR DEBUG ONLY
-        enabled: true,
-        showButton: true
-      },
+      // configure: { // FOR DEBUG ONLY
+      //   enabled: true,
+      //   showButton: true
+      // },
       layout: {
         randomSeed: 1,
         improvedLayout:true,
@@ -70,13 +64,13 @@ function init() {
       },
       physics :{
         enabled:true,
-        maxVelocity: 1,
+        maxVelocity: 150,
         solver: 'forceAtlas2Based',
-        minVelocity: 0.1,
+        minVelocity: 2,
         stabilization: {
           enabled: true,
-          iterations: 10,
-          updateInterval: 1,
+          iterations: 100,
+          updateInterval: 10,
         }
 
       },
@@ -109,10 +103,10 @@ function init() {
                   editEdgeWithoutDrag(data,callback);
                 }
             }
-        }  
+        }
     }
 
-      
+
       network = new vis.Network(container, data, options);
       //Events
       network.on("stabilized", function (param) {
@@ -133,4 +127,3 @@ function init() {
 
 //Events
 }
-

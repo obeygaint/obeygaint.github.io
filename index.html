@@ -1,8 +1,10 @@
 <html>
 <head>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8">
     <script type="text/javascript" src="js/vis.min.js"></script>
     <script type="text/javascript" src="js/system.js"></script>
     <script type="text/javascript" src="js/operations.js"></script>
+    <script type="text/javascript" src="js/events.js"></script>
     <link href="css/vis.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/custom.css">
     <script type="text/javascript" src="js/exportImport.js"></script>
@@ -15,6 +17,7 @@
 		<input type="file" id="files" name="files[]"/>
 		<output id="list"></output>
 		<input type="button" value="Stabilize" onclick="network.fit()" name="">
+    <p><input type="checkbox" checked="true" id="physicsStatus" onclick="toggelePhysics()"> Enable physics</p>
 	</div>
 	<!-- Pop-up windows -->
 	<!-- Node edit popUp -->
@@ -22,13 +25,10 @@
 	  <span id="nodeOper">node</span> <br>
 	  <table style="margin:auto;">
 	    <tr>
-	      <td>id</td><td><input id="nodeId" value="new value" /></td>
+	      <td>№ ГК</td><td><input id="nodeNum" value="" /></td>
 	    </tr>
 	    <tr>
-	      <td>label</td><td><input id="nodeLabel" value="new value" /></td>
-	    </tr>
-	    <tr>
-	    	<td>Some info</td><td><input id="nodeInfo" value="new value"/></td>
+	      <td>Описание</td><td><input id="nodeLabel" value="" /></td>
 	    </tr>
 	  </table>
 	  <input type="button" value="save" id="nodeSaveButton" />
@@ -40,7 +40,7 @@
 	  <span id="edgeOperation">edge</span> <br>
 	  <table style="margin:auto;">
 	    <tr>
-	      <td>label</td><td><input id="edgeLabel" value="new value" /></td>
+	      <td>Связь</td><td><input id="edgeLabel" value="" /></td>
 	    </tr></table>
 	  <input type="button" value="save" id="edgeSaveButton" />
 	<!--   <input type="button" value="cancel" id="edgeCancelButton" />

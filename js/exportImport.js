@@ -9,6 +9,14 @@ function handleFileSelect(evt) {
 			// nodes.update();
 			nodes.clear();
 			edges.clear();
+			data.nodes.forEach(function(item,i,nodes){
+				template = "<div><p>№ ГК: <span>"+
+				item.num+
+				"</span></p><p>Описание: <span>"+
+				item.label+
+				"</span></div>"
+				item.title = template;
+			});
 			nodes.add(data.nodes);
 			edges.add(data.edges);
 			// network.redraw();
@@ -27,16 +35,13 @@ function saveNodeToFile(nodes) {
     })
 
     var nodesArr = nodes.get({
-    	fields: ['id', 'label', 'physics', 'x', 'y']
+    	fields: ['id','num', 'label',]
     })
     var graphData = {
     	nodes: nodesArr,
     	edges: edgesArr
     }
-   //  nodes.forEach(function(item, i, arr) {
-  	// 			nodesArr[i] = item;
-			// });
-    element.setAttribute('href', 'data:application/octet-stream;text/plain;charset=utf-8,' 
+    element.setAttribute('href', 'data:application/octet-stream;text/plain;charset=utf-8,'
         + encodeURIComponent(JSON.stringify(graphData)));
     var dateTime = new Date();
     element.setAttribute('download', dateTime);
@@ -44,4 +49,8 @@ function saveNodeToFile(nodes) {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+}
+
+function generateTitle(node) {
+
 }
