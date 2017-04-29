@@ -7,7 +7,7 @@ function toggelePhysics(){
   network.physics.physicsEnabled = status;
 }
 function initializeEvents() {
-  network.on("click", function (params) {
+  network.on("doubleClick", function (params) {
       var clickedObjectType = CANVAS; //0-canvas 1-node 2-edge
       if(params.nodes.length > 0) {
         clickedObjectType = NODE;
@@ -17,6 +17,10 @@ function initializeEvents() {
       console.log(clickedObjectType);
       switch (clickedObjectType) {
         case CANVAS: //Add new Node
+          var coordinates = params.pointer.canvas;
+          console.log(coordinates);
+          $('#nodeX').val(coordinates.x);
+          $('#nodeY').val(coordinates.y);
           $('#nodeModal').modal('show');
           // document.getElementById('nodeOper').innerHTML = "Add Node";
           // editNode(params.nodes[0]);
@@ -24,6 +28,10 @@ function initializeEvents() {
         case NODE:
           break;
         case EDGE:
+          var selectedEdge = edges.get(params.edges[0]);
+          $('#edgeNum').val(selectedEdge.id);
+          $("#edgeLabel").val(selectedEdge.label);
+          $('#edgeModal').modal('show');
           break;
         default:
 
@@ -31,6 +39,9 @@ function initializeEvents() {
       //canvas click
       //node click
       //edge click
+  });
+  network.on('doubleClick',function (params) {
+    console.log('doubleClicked');
   });
 
   network.on("select", function (params) {
@@ -53,19 +64,4 @@ function initializeEvents() {
   network.on("startStabilizing", function (param) {
         network.fit();
   });
-}
-
-function addNewNodeFromModal() {
-  var node = {
-    id: $('#nodeNum').val(),
-    label: $('#nodeLabel').val()
-  }
-  nodes.update(node);
-  $('#nodeModal').modal('hide');
-  clearNodeModal();
-}
-
-function clearNodeModal() {
-  $('#nodeNum').val('');
-  $('#nodeLabel').val('');
 }

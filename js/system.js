@@ -50,29 +50,29 @@ function init() {
       // },
       layout: {
         randomSeed: 1,
-        improvedLayout:true,
-        hierarchical: {
-          enabled:false,
-          levelSeparation: 150,
-          nodeSpacing: 100,
-          treeSpacing: 200,
-          blockShifting: true,
-          edgeMinimization: true,
-          parentCentralization: true,
-          direction: 'LR',        // UD, DU, LR, RL
-          sortMethod: 'directed'   // hubsize, directed
-          }
+        // improvedLayout:true,
+        // hierarchical: {
+        //   enabled:false,
+        //   levelSeparation: 150,
+        //   nodeSpacing: 100,
+        //   treeSpacing: 200,
+        //   blockShifting: true,
+        //   edgeMinimization: true,
+        //   parentCentralization: true,
+        //   direction: 'LR',        // UD, DU, LR, RL
+        //   sortMethod: 'directed'   // hubsize, directed
+        //   }
       },
       physics :{
-        enabled:true,
-        maxVelocity: 150,
-        solver: 'forceAtlas2Based',
-        minVelocity: 2,
-        stabilization: {
-          enabled: true,
-          iterations: 100,
-          updateInterval: 10,
-        }
+        enabled:false,
+        // maxVelocity: 150,
+        // solver: 'forceAtlas2Based',
+        // minVelocity: 2,
+        // stabilization: {
+        //   enabled: true,
+        //   iterations: 100,
+        //   updateInterval: 10,
+        // }
 
       },
         manipulation: {

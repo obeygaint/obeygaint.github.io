@@ -60,3 +60,36 @@ function saveEdgeData(data, callback) {
       clearEdgePopUp();
       callback(data);
     }
+function addNewNodeFromModal() {
+  template = "<div><p>№ ГК: <span>"+
+  $('#nodeNum').val()+
+  "</span></p><p>Описание: <span>"+
+  $('#nodeLabel').val()
+  "</span></div>"
+  var node = {
+    id: $('#nodeNum').val(),
+    label: $('#nodeLabel').val(),
+    x: $('#nodeX').val(),
+    y: $('#nodeY').val(),
+    title: template
+  }
+  nodes.update(node);
+  $('#nodeModal').modal('hide');
+  clearNodeModal();
+}
+
+function saveEdge() {
+  var edge = {
+    id: $('#edgeNum').val(),
+    label: $("#edgeLabel").val()
+  }
+  edges.update(edge);
+  $('#edgeModal').modal('hide');
+}
+
+function clearNodeModal() {
+  $('#nodeX').val('');
+  $('#nodeY').val('');
+  $('#nodeNum').val('');
+  $('#nodeLabel').val('');
+}

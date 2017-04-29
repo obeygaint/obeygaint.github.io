@@ -58,12 +58,46 @@
             <tr>
               <td>Описание</td><td><input id="nodeLabel" value="" /></td>
             </tr>
+            <tr>
+              <td>X:</td><td><input id="nodeX" readonly value="" /></td>
+            </tr>
+            <tr>
+              <td>Y:</td><td><input id="nodeY" readonly value="" /></td>
+            </tr>
           </table>
         </div>
         <!-- Футер модального окна -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
           <button type="button" class="btn btn-primary" onclick="addNewNodeFromModal()" >Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="edgeModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Заголовок модального окна -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Edge</h4>
+        </div>
+        <!-- Основное содержимое модального окна -->
+        <div class="modal-body">
+          <table style="margin:auto;">
+            <tr>
+              <td>№ ГК</td><td><input id="edgeNum" value="" readonly/></td>
+            </tr>
+            <tr>
+              <td>Описание</td><td><input id="edgeLabel" value="" /></td>
+            </tr>
+          </table>
+        </div>
+        <!-- Футер модального окна -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-primary" onclick="saveEdge()" >Сохранить</button>
         </div>
       </div>
     </div>

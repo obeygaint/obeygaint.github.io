@@ -35,7 +35,7 @@ function saveNodeToFile(nodes) {
     })
 
     var nodesArr = nodes.get({
-    	fields: ['id','num', 'label',]
+    	fields: ['id','num', 'label','x','y']
     })
     var graphData = {
     	nodes: nodesArr,
