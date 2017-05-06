@@ -16,15 +16,19 @@
 
 </head>
 <body onload="init()">
-	<div id="mynetwork"></div>
-	<div class="sidebar">
-		<button onclick="saveNodeToFile(nodes)">Save nodes to file</button>
-		<input type="file" id="files" name="files[]"/>
-		<output id="list"></output>
-    <a href="#nodeModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно</a>
-		<input type="button" value="Stabilize" onclick="network.fit()" name="">
-    <p><input type="checkbox" checked="true" id="physicsStatus" onclick="toggelePhysics()"> Enable physics</p>
-	</div>
+  <nav class="navbar navbar-default">
+    <h3 class="navbar-text navbar-left">Grapth Builder</h3>
+    <input type="file" id="files" name="files[]" style="display:none"/>
+    <button type="button" onclick="saveNodeToFile(nodes)" class="btn btn-primary btn-md navbar-btn">Save</button>
+    <button type="button" onclick="$('#files').trigger('click');" class="btn btn-primary btn-md navbar-btn">Load</button>
+    <button type="button" onclick="network.fit();" class="btn btn-primary btn-md navbar-btn">Stabilize</button>
+    <input type="file" id="files" style="display:none">
+    <label class="checkbox-inline"><input type="checkbox" checked="true" id="physicsStatus" onclick="toggelePhysics()"> Enable physics</lable>
+  </nav>
+  <div class="container-fluid">
+  <!-- <div class="container-fluid"> -->
+    <div id="mynetwork"></div>
+  </div>
 	<!-- Pop-up windows -->
 	<!-- Node edit popUp -->
 	<!-- <div id="nodePopUp">
@@ -102,16 +106,6 @@
       </div>
     </div>
   </div>
-	<!-- Edge edit popup -->
-	<div id="edgePopUp">
-	  <span id="edgeOperation">edge</span> <br>
-	  <table style="margin:auto;">
-	    <tr>
-	      <td>Связь</td><td><input id="edgeLabel" value="" /></td>
-	    </tr></table>
-	  <input type="button" value="save" id="edgeSaveButton" />
-	<!--   <input type="button" value="cancel" id="edgeCancelButton" />
-	 --></div>
 
 </body>
 </html>
