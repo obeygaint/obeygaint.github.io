@@ -19,12 +19,13 @@ function handleFileSelect(evt) {
 			});
 			nodes.add(data.nodes);
 			edges.add(data.edges);
-			// network.redraw();
-        };
+			network.redraw();
+    	};
       })(file);
 
       // Read in the image file as a data URL.
       reader.readAsText(file);
+			$('#files').val('');
 }
 
 

@@ -18,7 +18,6 @@ function initializeEvents() {
       switch (clickedObjectType) {
         case CANVAS: //Add new Node
           var coordinates = params.pointer.canvas;
-          console.log(coordinates);
           $('#nodeX').val(coordinates.x);
           $('#nodeY').val(coordinates.y);
           $('#nodeModal').modal('show');
@@ -26,6 +25,12 @@ function initializeEvents() {
           // editNode(params.nodes[0]);
           break;
         case NODE:
+          var selectedNode = nodes.get(params.nodes[0]);
+          $('#nodeNum').val(selectedNode.id);
+          $('#nodeLabel').val(selectedNode.label);
+          $('#nodeX').val(selectedNode.x);
+          $('#nodeY').val(selectedNode.y);
+          $('#nodeModal').modal('show');
           break;
         case EDGE:
           var selectedEdge = edges.get(params.edges[0]);
@@ -36,16 +41,15 @@ function initializeEvents() {
         default:
 
       }
-      //canvas click
-      //node click
-      //edge click
   });
   network.on('doubleClick',function (params) {
     console.log('doubleClicked');
   });
 
   network.on("select", function (params) {
+    console.log(params);
     if (params.nodes.length === 2) {
+      console.log(params);
       edges.update({
         from: params.nodes[0],
         to: params.nodes[1]
@@ -64,4 +68,18 @@ function initializeEvents() {
   network.on("startStabilizing", function (param) {
         network.fit();
   });
+
+  network.on("dragEnd", function (params) {
+    for (var i = 0; i < params.nodes.length; i++) {
+        var nodeId = params.nodes[i];
+        var coordinates = params.pointer.canvas
+        nodes.update({id: nodeId, x:coordinates.x, y:coordinates.y});
+    }
+  });
+  // network.on('dragStart', function(params) {
+  //   for (var i = 0; i < params.nodes.length; i++) {
+  //       var nodeId = params.nodes[i];
+  //       nodes.update({id: nodeId, fixed: {x: false, y: false}});
+  //   }
+  // });
 }

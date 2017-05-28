@@ -1,6 +1,6 @@
 //edit node info
 function editNode(data, callback) {
-      document.getElementById('nodeNum').value = data.num;
+      document.getElementById('nodeNum').value = data.id;
       document.getElementById('nodeLabel').value = data.label;
       document.getElementById('nodeSaveButton').onclick = saveNodeData.bind(this, data, callback);
       document.getElementById('nodeCancelButton').onclick = clearNodePopUp.bind();
@@ -76,6 +76,16 @@ function addNewNodeFromModal() {
   nodes.update(node);
   $('#nodeModal').modal('hide');
   clearNodeModal();
+}
+
+function removeNode() {
+  try {
+    nodes.remove({id: $('#nodeNum').val() })
+    $('#nodeModal').modal('hide');
+    clearNodeModal();
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function saveEdge() {

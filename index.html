@@ -17,7 +17,7 @@
 </head>
 <body onload="init()">
   <nav class="navbar navbar-default">
-    <h3 class="navbar-text navbar-left">Grapth Builder</h3>
+    <h3 class="navbar-text navbar-left">Graph Builder</h3>
     <input type="file" id="files" name="files[]" style="display:none"/>
     <button type="button" onclick="saveNodeToFile(nodes)" class="btn btn-primary btn-md navbar-btn">Save</button>
     <button type="button" onclick="$('#files').trigger('click');" class="btn btn-primary btn-md navbar-btn">Load</button>
@@ -25,10 +25,8 @@
     <input type="file" id="files" style="display:none">
     <label class="checkbox-inline"><input type="checkbox" checked="true" id="physicsStatus" onclick="toggelePhysics()"> Enable physics</lable>
   </nav>
-  <div class="container-fluid">
   <!-- <div class="container-fluid"> -->
     <div id="mynetwork"></div>
-  </div>
 	<!-- Pop-up windows -->
 	<!-- Node edit popUp -->
 	<!-- <div id="nodePopUp">
@@ -73,7 +71,8 @@
         <!-- Футер модального окна -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-          <button type="button" class="btn btn-primary" onclick="addNewNodeFromModal()" >Сохранить</button>
+          <button id="saveNodeBtn" type="button" class="btn btn-primary" onclick="addNewNodeFromModal()" >Сохранить</button>
+          <button type="button" class="btn btn-danger" onclick="removeNode()">Удалить</button>
         </div>
       </div>
     </div>
@@ -102,6 +101,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
           <button type="button" class="btn btn-primary" onclick="saveEdge()" >Сохранить</button>
+          <button type="button" class="btn btn-danger" onclick="removeEdge()">Удалить</button>
         </div>
       </div>
     </div>

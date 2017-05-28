@@ -6,7 +6,9 @@ function init() {
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
   nodeTitle = "<div><p>№ ГК <span>123</span></p><p>№ ГК <span>123</span></p><p>№ ГК <span>123</span></p></div>"
   nodes = new vis.DataSet();
-
+  nodes.on('*', function (event, properties, senderId) {
+    console.log('event:', event, 'properties:', properties, 'senderId:', senderId);
+  });
       // create an array with edges
       edges = new vis.DataSet(
       //   [
@@ -44,10 +46,10 @@ function init() {
         hover: true,
         multiselect: true
       },
-      // configure: { // FOR DEBUG ONLY
-      //   enabled: true,
-      //   showButton: true
-      // },
+      configure: { // FOR DEBUG ONLY
+        enabled: true,
+        showButton: true
+      },
       layout: {
         randomSeed: 1,
         // improvedLayout:true,
@@ -114,11 +116,11 @@ function init() {
 
       width = document.getElementById('mynetwork').offsetWidth;
       height = document.getElementById('mynetwork').offsetHeight;
-      network.moveTo({
-        position: {x: 0, y: 0},
-        offset: {x: (-width/2) , y: (-height/2)},
-        scale: 1,
-    })
+    //   network.moveTo({
+    //     position: {x: 0, y: 0},
+    //     offset: {x: (-width/2) , y: (-height/2)},
+    //     scale: 1,
+    // })
 
 //Events
 }
